@@ -1,0 +1,10 @@
+.card {
+    border: 1px solid black;
+    margin: 30px;
+    width: fit-content;
+    background-color: rgb(233, 97, 240);
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 20vh;
+
+}

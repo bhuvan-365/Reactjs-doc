@@ -1,0 +1,19 @@
+
+nav ,ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    gap: 30px;
+}
+li{
+    list-style: none;
+}
+ul{
+    gap: 20px;
+}
+nav{
+    background-color: #f0a8a8;
+    padding: 15px;
+   
+  
+}

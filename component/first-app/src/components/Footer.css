@@ -1,0 +1,23 @@
+footer{
+    background-color: rgb(98, 81, 99);
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+footer ul{
+    margin-top: 12px;
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+footer ul li a{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+.para{
+    text-align: center;
+}
