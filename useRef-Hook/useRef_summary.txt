@@ -1,0 +1,63 @@
+useRef is a React Hook that creates a mutable object, persisting across renders without causing re-renders when modified. It's commonly used to access DOM elements directly and manage values that don't affect the component's visual output. 
+
+
+//USE CASE 1:
+//The useRef hook is used to persist values across renders without causing a re-render when the value changes.
+
+
+function App() {
+    const [count, setCount] = useState(0)
+    const a = useRef(0)
+
+
+    useEffect(() => {
+        a.current = a.current + 1
+        console.log(`Rerendering the value of a is ${a.current}`)
+
+
+    })
+
+
+//USE CASE 2:
+// The useRef hook is used to directly access a DOM element and manipulate it without causing a re-render.
+
+function App() {
+  const [count, setCount] = useState(0)
+  const ref = useRef()
+
+
+  useEffect(() => {
+
+    console.log(`First Rendering `)
+    ref.current.style.backgroundColor = 'red'
+
+
+  }, []);
+
+
+<button ref={ref} onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+
+
+
+        <button onClick={()=>{ ref.current.style.display = "none" }} >change</button>
+
+Conclusion from useRef_summary:
+
+The useRef hook in React is a powerful tool for two main purposes:
+
+1.Persisting Values Across Renders:
+=> useRef lets you store a mutable value that survives re-renders without causing the component to 
+re-render when the value changes. This is useful for keeping track of values like counters, previous props,
+ or any data you want to persist between renders but don’t need to display.
+
+2.Direct DOM Manipulation:
+=> useRef can be attached to a DOM element, allowing you to directly access and modify its properties 
+(like style or focus) without triggering a re-render. This is helpful for tasks like focusing an input, changing 
+styles, or hiding/showing elements programmatically.
+
+
+In summary:
+useRef is ideal for storing mutable values and directly interacting with DOM elements in React,
+ all without causing unnecessary re-renders.
