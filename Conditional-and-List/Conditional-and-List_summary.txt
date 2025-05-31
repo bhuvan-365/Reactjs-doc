@@ -1,0 +1,106 @@
+function App() {
+  const [count, setCount] = useState(0)
+const [showbtn, setshowbtn] = useState(false)
+  return (
+    <>
+    
+
+       {showbtn?<button>I will show click</button>: "is false"}
+MEAN: it means if showbtn is true then rund else  
+
+      {showbtn && <button>I will show click</button>}
+MEAN: it means if showbtn is true then rund else  (same as above)
+     
+    
+
+
+
+      <button onClick={() => setshowbtn((!showbtn))}>
+          count is {count}
+        </button>
+MEAN : notofshowbtn which is opostive    IT made toggle    
+
+
+
+
+
+    </>
+  )
+}
+
+export default App
+
+
+YOU CAN MAKEFUNCTION TOO:
+
+const Todo = ()=>{ return (
+  <> <div className='todo'>I am todo</div> </>
+)}
+
+
+add this (todo functon )  to inside main return 
+<Todo />
+
+
+IMPORTANT :
+
+
+function App() {
+
+1. State Initialization
+This creates a state variable todos (an array of todo objects) and a function settodos to update it.
+Each todo has an id and a title.
+
+const [todos, settodos] = useState([
+  { id: 1, title: 'Learn React' },
+  { id: 2, title: 'Learn Vite' },
+  { id: 3, title: 'Build a project' }
+])
+
+2. Todo Component
+This is a small component that receives a single todo object as a prop and displays its title and id.
+
+const Todo =({todo})=>{
+  return (
+    <div >
+      <h2>{todo.title}</h2>
+      <p>Todo ID: {todo.id}</p>
+    </div>
+  )
+}
+
+3. Rendering the Todos
+This loops through the todos array.
+For each todo, it renders the Todo component, passing the current todo as a prop.
+This displays a list of all todos on the page.
+
+  return (
+    <>
+    {
+      todos.map(todo =>{
+        return <Todo key={todo.title } todo = {todo}/>
+      })
+    }
+
+
+
+Same but easy 
+
+const [todos, settodos] = useState([
+  { id: 1, title: 'Learn React' },
+  { id: 2, title: 'Learn Vite' },
+  { id: 3, title: 'Build a project' }
+])
+
+
+{
+      todos.map(todo  =>{
+     
+        return (
+            <div key={todo.id} >
+      <h2>{todo.title}</h2>
+      <p>Todo ID: {todo.id}</p>
+    </div>
+        )
+      })
+    }
