@@ -1,0 +1,96 @@
+This is onClick event handling in React. The `handleClick` function is called when the button is clicked, triggering an alert. You can replace the alert with any other logic you want to execute on button click.
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  const handleClick = () => {
+    alert("Button clicked!");
+  }
+
+  return (
+    <>
+      <div className="button">
+        <button onClick={handleClick}>Click me</button>
+      </div>
+     
+    </>
+  )
+}
+
+export default App
+
+----------------------------------------------------------------------------------------------------------------------
+This is onMouseOver event handling in React. The `handleMouseOver` function is called when the mouse hovers over the red div, triggering an alert. You can replace the alert with any other logic you want to execute on mouse over.
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  const handleClick = () => {
+    alert("Button clicked!");
+  }
+
+  const handleMouseOver = () => {
+    alert("Mouse is over the red div!");
+  }
+
+  return (
+    <>
+      <div className="button">
+        <button onClick={handleClick}>Click me</button>
+      </div>
+      <div className="red" onMouseOver={handleMouseOver}>
+        I am red
+      </div>
+    </>
+  )
+}
+
+export default App
+
+-----------------------------------------------------------------------------------------------------------------------------------
+This is How input type work 
+
+function App() {
+
+  const [name, setname] = useState("Utshav")
+
+
+  const handleChange = (e)=> {
+    setname(e.target.value)
+  }
+
+  return (
+    <>
+      <input type="text" value={name} onChange={handleChange}/>
+    </>
+  )
+}
+
+export default App
+-----------------------------------------------------------------------------------------------------------
+for multiple input and to store in one useState as a object
+
+function App() {
+
+  const [form, setForm] = useState({
+    email: "",
+    phone: ""
+  });
+
+
+  const handleChange = (e)=> {
+    // setname(e.target.value)
+    setForm({...form,[e.target.name]: e.target.value})
+    console.log(form)
+
+  }
+
+  return (
+    <>
+      <input type="text" name="email" value={form.email} onChange={handleChange}/>
+      <input type="text" name="phone" value={form.phone} onChange={handleChange}/>
+    </>
+  )
+}
+
+export default App
