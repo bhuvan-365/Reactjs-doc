@@ -1,0 +1,138 @@
+Routing in react means going another page with out reload the page
+It is similar to anchor tag but , we have problem with anchortag that is it reload whole page 
+
+
+FIRST STEP before using Routing
+command :- npm i react-router-dom
+
+AND USE 
+import { createBrowserRouter } from 'react-router-dom'
+
+-------------------------------------------------------------------------------------------------
+EXAMPLE
+->app.jsx
+
+import { useState } from 'react'
+import Navbar from './componenr/Navbar'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './componenr/Home'
+import Login from './componenr/Login'
+import About from './componenr/About'
+
+function App() {
+  const router = createBrowserRouter([
+
+    {
+      path: "/",
+      element: <><Navbar /> <Home /></>
+    },
+    {
+      path: "/login",
+      element: <><Navbar /> <Login /></>
+    },
+    {
+      path: "/about",
+      element: <><Navbar /> <About /></>
+    },
+
+
+  ])
+
+
+  return (
+    <>
+
+      <RouterProvider router={router} />
+
+    </>
+  )
+}
+
+export default App
+
+
+-->Navbar.jsx
+
+import React from 'react'
+import {Link} from 'react-router-dom'
+
+const Navbar = () => {
+    return (
+        <div>
+            <nav>
+                <Link to="/"><li>Home</li></Link>
+                <Link to="/about"><li>About</li></Link>
+                <Link to="/login"><li>Log in</li></Link>
+            </nav>
+
+        </div>
+    )
+}
+
+export default Navbar
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+FOR DYNAMIC ROUTING
+
+--->app.jsx
+
+
+import User from './componenr/User'
+
+function App() {
+  const router = createBrowserRouter([
+
+ {
+      path: "/user/:username",
+      element: <><Navbar /> <User/></>
+    },
+  ])
+  return (
+    <>
+
+      <RouterProvider router={router} />
+
+    </>
+  )
+}
+
+export default App
+
+-->User.jsx
+
+import React from 'react'
+import{useParams} from 'react-router-dom'
+
+const User = () => {
+
+const params = useParams()
+
+  return (
+    <div>
+      i am user{params.username}
+    </div>
+  )
+}
+
+export default User
+
+
+--------------------------------------------------------------------------------------------------------------------------
+If you wanna add active feature then 
+
+-->Navbar.jsx
+
+import {NavLink} from 'react-router-dom'
+
+
+ <nav>
+  <NavLink  className ={(e)=>{return e.isActive?"black":""}} to="/"><li>Home</li></NavLink>
+  <NavLink className ={(e)=>{return e.isActive?"black":""}}  to="/about"><li>About</li></NavLink>
+  <NavLink className ={(e)=>{return e.isActive?"black":""}}  to="/login"><li>Log in</li></NavLink>
+ </nav>
+
+ .black{
+your active css
+
+ }
