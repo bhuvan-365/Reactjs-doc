@@ -1,0 +1,91 @@
+Hierarchy
+
+App.jsx
+   Navbar.jsx
+       Button.jsx
+            Component1.jsx
+
+
+
+Passing the count prop from App to Navbar, then from Navbar to Button, and finally from Button to Component1 is an example of prop drilling. This approach can become problematic as your component tree grows deeper, because you have to pass the same prop through multiple intermediate components that don’t actually use it themselves. This makes your code harder to maintain and refactor, and can lead to bugs if you forget to forward the prop at any level. In such cases, using React Context is a better solution, as it allows you to share data directly with any component in the tree without unnecessary prop
+
+
+FOR USING CONTEXT
+
+step1: create ,context.js
+
+import { createContext } from "react";
+
+ export const counterContext = createContext(0)
+
+STEP2 : use in app.jsx
+
+import { counterContext } from './context/context'
+
+<counterContext.Provider value= {count}>
+:
+:
+COde
+:
+:
+</counterContext.Provider>
+STEP 3 : use where you want to
+import React, { useContext } from 'react'
+import { counterContext } from '../context/context'  *****
+
+
+const Component = () => {
+const count = useContext(counterContext)                  *****
+
+    return (
+        <div>
+            {count}
+       
+        </div>
+    )
+}
+
+export default Component
+
+
+
+FOR MORE MAKE IT OBJECT 
+
+
+<counterContext.Provider value= {{count,setCount}}>
+
+
+
+
+
+const Component = () => {
+const value = useContext(counterContext)
+
+    return (
+        <div>
+            {value.count}
+       
+        </div>
+    )
+}
+
+
+
+
+
+import React,{useContext} from 'react'
+import Component from './Component'
+import { counterContext } from '../context/context'
+
+const Button = () => {
+
+  const value = useContext(counterContext)
+  return (
+    <div>
+       <button onClick={()=>  value.setCount((count)=>count+1)}> <span><Component/></span>I am a button</button>
+      
+    </div>
+  )
+}
+
+export default Button
