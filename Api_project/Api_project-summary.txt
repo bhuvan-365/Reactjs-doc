@@ -1,0 +1,20 @@
+Short Description:
+This React app fetches a list of posts from an API when the page loads and displays each post as a card. It uses React hooks (useState, useEffect) for state management and side effects.
+
+1.State Setup:
+cards state is created to store the list of posts.
+
+2.Fetching Data:
+The fetchData function fetches posts from https://jsonplaceholder.typicode.com/posts, converts the response to JSON, and updates the cards state.
+
+3.useEffect:
+useEffect runs fetchData() once when the component mounts (because of the empty dependency array []).
+
+4.Rendering:
+The app maps over the cards array and displays each post’s title, body, and user id inside a styled card.
+
+5.Navbar:
+The Navbar component is displayed at the top.
+
+6.Summary:
+When the app loads, it fetches posts from an API and displays them as cards below the navbar.
