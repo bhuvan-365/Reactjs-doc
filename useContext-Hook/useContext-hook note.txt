@@ -1,3 +1,81 @@
+Problem: Prop Drilling
+When you pass a prop (like count) from App → Navbar → Button → Component1, each component in the chain must forward the prop, even if it doesn’t use it.
+This is called prop drilling and can make your code harder to maintain as your app grows.
+
+Solution: React Context
+React Context lets you share data (like count) directly with any component in your tree, without passing it through every level.
+
+How to Use Context (Step-by-Step)
+Step 1: Create the Context
+Create a file called context.js:
+
+import { createContext } from "react";
+
+export const counterContext = createContext(0);
+// For sharing just 'count'
+// OR
+// export const counterContext = createContext({ count: 0, setCount: () => {} });
+// For sharing both 'count' and 'setCount'
+
+Step 2: Provide the Context in App.jsx
+Wrap your app (or the part that needs access) with the Provider:
+
+For just count:
+
+import { counterContext } from './context/context';
+
+<counterContext.Provider value={count}>
+  {/* ...your components... */}
+</counterContext.Provider>
+
+For both count and setCount:
+
+<counterContext.Provider value={{ count, setCount }}>
+  {/* ...your components... */}
+</counterContext.Provider>
+
+Step 3: Use Context in Any Component
+If you provided just count:
+
+import { useContext } from 'react';
+import { counterContext } from '../context/context';
+
+const Component = () => {
+  const count = useContext(counterContext);
+  return <div>{count}</div>;
+};
+
+If you provided { count, setCount }:
+
+import { useContext } from 'react';
+import { counterContext } from '../context/context';
+
+const Component = () => {
+  const value = useContext(counterContext);
+  return <div>{value.count}</div>;
+};
+
+Example: Updating the Count
+If you provide { count, setCount }, you can update the count from any component:
+
+const Button = () => {
+  const value = useContext(counterContext);
+  return (
+    <button onClick={() => value.setCount((count) => count + 1)}>
+      <span><Component /></span>
+      I am a button
+    </button>
+  );
+};
+
+
+
+
+
+
+
+For better understanding:
+
 Hierarchy
 
 App.jsx
