@@ -69,6 +69,13 @@ const Button = () => {
 };
 
 
+Conclusion:
+
+Prop drilling is passing props through many layers—Context solves this.
+Context lets you share data/functions with any component, no matter how deep.
+Use Provider at the top, and useContext wherever you need the value.
+
+
 
 
 
