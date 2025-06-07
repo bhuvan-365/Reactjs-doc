@@ -1,0 +1,89 @@
+NOTE; 
+
+.fill(0)
+This fills the array with the value 0 in every position.
+Example:
+new Array(5).fill(0) creates [0, 0, 0, 0, 0].
+
+.map((_, i) => { ... })
+.map creates a new array by transforming each element.
+The first argument (_) is the current value (here, always 0), and i is the index.
+In your code, .map((_, i) => { ... }) creates an object for each index.
+
+
+The .find() method in JavaScript searches an array and returns the first element that matches a condition.
+
+In your code:
+numbers.find(item => item.isMagical == true)
+
+This looks through the numbers array.
+It returns the first object where isMagical is true.
+Example: If only one object has isMagical: true, .find() will return that object.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+import { useState ,useMemo } from 'react'
+
+const nums = new Array(30_000).fill(0).map((_,i)=>{
+return{
+index:i,
+isMagical: i==29_000
+
+}
+})
+
+
+function App() {
+  const [count, setCount] = useState(0)
+const [numbers, setnumbers] = useState(nums)
+
+
+// const magical = numbers.find(item=>item.isMagical==true) //Expensive computation
+=> this is an expensive computation , means it will render in every execution 
+
+const magical = useMemo(() => numbers.find(item=>item.isMagical==true), [numbers])
+=> this help to run certain function only one time rerender only one time
+
+
+  return (
+    <>
+      <div>
+        <span>magic : {magical.index}</span>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+         
+FOR UPDATE MAGICAL NUMBER;
+<button onClick={() => {
+          setCount((count) => count + 1);
+          if (count == 10) {
+            setnumbers(new Array(10_000).fill(0).map((_, i) => {
+              return {
+                index: i,
+                isMagical: i == 9_000
+              }
+            }))
+          }
+        }}>
+          count is {count}
+        </button>
+
+
+
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
