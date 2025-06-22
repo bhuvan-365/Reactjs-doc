@@ -42,6 +42,8 @@ function App() {
             <br />
             {/* for simple error message display
           errors.username && <div className="red">There some error</div> */}
+            {/* for simple error message display
+          errors.username && <div className="red">There some error</div> */}
 
             {errors.username && <div className="red">{errors.username.message}</div>}
 
