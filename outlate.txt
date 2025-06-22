@@ -1,9 +1,10 @@
 <Outlet /> is a special component from react-router-dom.
-It acts as a placeholder for rendering the child route’s element inside a parent route’s layout.
+=> It acts as a placeholder for rendering the child route’s element inside a parent route’s layout.
 
 How it works:
 
-In your route config, if a route has children, the parent’s element can include <Outlet />.
+
+=>In your route config, if a route has children, the parent’s element can include <Outlet />.
 When you navigate to a child route, React Router will render the child’s component at the <Outlet /> position.
 
 Example:
