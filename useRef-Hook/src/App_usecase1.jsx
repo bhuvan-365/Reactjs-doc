@@ -15,10 +15,7 @@ function App() {
     useEffect(() => {
         a.current = a.current + 1
         console.log(`Rerendering the value of a is ${a.current}`)
-
-
     })
-
 
     return (
         <>
