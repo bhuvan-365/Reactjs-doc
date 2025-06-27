@@ -1,0 +1,39 @@
+React useEffect() Hook – Practical Cases
+The useEffect() hook lets you run side effects in your React components.
+Depending on its dependency array, it behaves differently:
+
+1. Run on Every Render
+
+useEffect(() => {
+  alert('I run in every render ')
+})
+
+> No dependency array.
+>Runs after every render (initial and updates).
+
+
+
+2. Run Only on First Render (Mount)
+
+useEffect(() => {
+  alert('I run in first render only')
+}, [])
+
+>Empty dependency array ([]).
+>Runs only once after the first render (component mount).
+
+3. Run When a Specific Value Changes
+
+useEffect(() => {
+  alert('i run when state: color change')
+}, [color])
+
+>Dependency array with [color].
+>Runs after the first render and whenever color changes.
+
+Summary Table
+
+useEffect usage	                When does it run?
+useEffect(() => {...})	       After every render
+useEffect(() => {...}, [])	   Only after first render (mount)
+useEffect(() => {...}, [x])	   After first render and when x changes
