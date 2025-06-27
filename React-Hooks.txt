@@ -1,0 +1,38 @@
+useCallback
+Use case:
+Prevents unnecessary recreation of functions on every render, especially useful when passing callbacks to memoized components.
+
+
+react-router
+Use case:
+Handles client-side routing—lets you navigate between pages/components without reloading the page.
+
+
+useContext
+Use case:
+Shares data (like state or functions) globally across components without prop drilling.
+
+
+useEffect
+Use case:
+Runs side effects (like data fetching, subscriptions, or manual DOM changes) after render or when dependencies change.
+
+
+useMemo
+Use case:
+Memoizes expensive calculations so they only re-run when dependencies change, improving performance.
+
+
+useRef
+Use case:
+Accesses or stores mutable values (like DOM elements or instance variables) that persist across renders without causing re-renders.
+
+
+📊 Summary Table
+Hook/Concept    	        Use Case	              Example Purpose
+useCallback	           Memoize function     	     Prevent child re-renders
+react-router	       Handle navigation	         SPA routing
+useContext	           Global state without props	 Theme, Auth, App state
+useEffect	           Side effects	                 Fetch data, run once
+useMemo            	   Memoize value	             Expensive calc optimization
+useRef	               DOM/mutable value reference	 Focus input, store timer ID
