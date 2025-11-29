@@ -1,1 +1,98 @@
 Use is new hook 
+
+
+
+use() is a new hook that lets you use a Promise directly inside a component.
+
+It automatically suspends until the promise resolves.
+
+No need for: ❌ useEffect
+❌ useState
+❌ loading states manually
+
+
+---
+
+✅ 1. Fetch Data Using use() (Simple Example)
+
+import { use } from "react";
+
+async function fetchUser() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users/1");
+  return res.json();
+}
+
+const userPromise = fetchUser();
+
+export default function App() {
+  const user = use(userPromise); // waits for promise to finish
+
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+    </div>
+  );
+}
+
+🔍 Description:
+
+use(userPromise) pauses the component until data arrives.
+
+When resolved → component renders with the data.
+
+No state/effect/loader needed.
+
+
+
+---
+
+✅ 2. Using use() with async functions inside Component
+
+import { use } from "react";
+
+function getMessage() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve("Hello from Future!"), 1000);
+  });
+}
+
+export default function App() {
+  const message = use(getMessage());
+
+  return <h1>{message}</h1>;
+}
+
+🔍 Description:
+
+React waits 1 second automatically.
+
+Then shows "Hello from Future!".
+
+
+
+---
+
+✅ 3. Using use() for passing async props
+
+import { use } from "react";
+
+export function Parent() {
+  const data = new Promise(resolve => {
+    resolve("Data from Parent");
+  });
+
+  return <Child info={data} />;
+}
+
+function Child({ info }) {
+  const result = use(info);
+
+  return <h2>{result}</h2>;
+}
+
+🔍 Description:
+
+✔ Parent gives a promise
+✔ Child uses use(info) to resolve it
+✔ Clean async flow
